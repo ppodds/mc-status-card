@@ -2,10 +2,17 @@ name: 'MC Status Card'
 description: 'Minecraft status card powered entirely by GitHub'
 author: 'ppodds'
 inputs:
-  milliseconds: # change this
+  host:
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+    description: 'MC Server host'
+  port:
+    required: false
+    description: 'MC Server port'
+    default: '25565'
+  bgImage:
+    required: false
+    description: 'background image url'
+    default: ''
 runs:
   using: 'node16'
   main: 'dist/index.js'
