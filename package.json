@@ -1,28 +1,27 @@
 {
-  "name": "typescript-action",
+  "name": "mc-status-card",
   "version": "0.0.0",
   "private": true,
-  "description": "TypeScript template action",
-  "main": "lib/main.js",
+  "description": "Generate a status card for a Minecraft server",
+  "main": "dist/main.js",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write '**/*.ts'",
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "jest",
-    "package": "NODE_OPTIONS=--max-old-space-size=4096 ncc build -m --source-map --license licenses.txt ",
-    "all": "npm run build && npm run format && npm run lint && npm run package && npm test"
+    "all": "npm run build && npm run format && npm run lint && npm test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/actions/typescript-action.git"
   },
   "keywords": [
-    "actions",
     "node",
-    "setup"
+    "minecraft",
+    "status-card"
   ],
-  "author": "",
+  "author": "ppodds",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "^1.6.0",

@@ -14,5 +14,9 @@ inputs:
     description: 'background image url'
     default: ''
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: 'composite'
+  steps:
+    - run: run.sh
+      shell: bash
+      env:
+        INPUTS: ${{ toJson(inputs) }}
