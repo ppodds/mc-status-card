@@ -62,13 +62,18 @@ function card(host, port, bgImage) {
             ctx.fillRect(0, 0, WIDTH, HEIGHT);
         }
         else {
-            ctx.drawImage((0, canvas_1.loadImage)(bgImage), 0, 0, WIDTH, HEIGHT);
+            ctx.drawImage(yield (0, canvas_1.loadImage)(bgImage), 0, 0, WIDTH, HEIGHT);
         }
         ctx.fillStyle = 'rgb(255,255,255)';
         ctx.font = '18px Impact';
+        ctx.shadowBlur = 3;
+        ctx.shadowColor = 'rgb(0,0,0)';
+        ctx.strokeText(host, 10, 30);
         ctx.fillText(host, 10, 30);
-        ctx.fillText(`Version: ${cardInfo.version}`, 10, 80);
-        ctx.fillText(`Players: ${cardInfo.players.online}/${cardInfo.players.max}`, 230, 80);
+        ctx.strokeText(`Version: ${cardInfo.version}`, 10, 85);
+        ctx.fillText(`Version: ${cardInfo.version}`, 10, 85);
+        ctx.strokeText(`Players: ${cardInfo.players.online}/${cardInfo.players.max}`, 230, 85);
+        ctx.fillText(`Players: ${cardInfo.players.online}/${cardInfo.players.max}`, 230, 85);
         (0, fs_1.writeFileSync)('./status_card.png', canvas.toBuffer());
     });
 }
