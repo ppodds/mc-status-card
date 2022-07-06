@@ -12,6 +12,4 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: npm install
-      - name: Increase old space size
-        run: export NODE_OPTIONS=--max_old_space_size=4096
       - run: npm run all
