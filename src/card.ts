@@ -28,7 +28,9 @@ async function extractCardInfo(options: PingOptions): Promise<CardInfo> {
           online: (pingResult as OldPingResult).playerCount
         },
         description: (pingResult as OldPingResult).motd,
-        version: pingResult.version as string
+        version: ((pingResult as OldPingResult).version.match(
+          /[0-9]+\.[0-9]+\.[0-9]+/
+        ) ?? ['unknown'])[0]
       }
     } else {
       return {
@@ -44,7 +46,9 @@ async function extractCardInfo(options: PingOptions): Promise<CardInfo> {
                   text?: string | undefined
                 }
               ).text || '',
-        version: (pingResult as NewPingResult).version.name
+        version: ((pingResult as NewPingResult).version.name.match(
+          /[0-9]+\.[0-9]+\.[0-9]+/
+        ) ?? ['unknown'])[0]
       }
     }
   } catch (e: any) {
