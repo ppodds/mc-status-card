@@ -29,7 +29,7 @@ async function extractCardInfo(options: PingOptions): Promise<CardInfo> {
         },
         description: (pingResult as OldPingResult).motd,
         version: ((pingResult as OldPingResult).version.match(
-          /[0-9]+\.[0-9]*\.[0-9]*/
+          /[0-9]+\.[0-9]*(\.[0-9])*/
         ) ?? ['unknown'])[0]
       }
     } else {
