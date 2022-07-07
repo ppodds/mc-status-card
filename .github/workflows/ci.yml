@@ -39,3 +39,4 @@ jobs:
         with:
           host: smp.nftworlds.com
           token: ${{ secrets.GITHUB_TOKEN }}
+          branch: test

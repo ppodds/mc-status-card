@@ -16,6 +16,9 @@ inputs:
   token:
     required: true
     description: 'GitHub personal access token'
+  branch:
+    required: true
+    description: 'GitHub repo branch'
 runs:
   using: 'composite'
   steps:
