@@ -7,7 +7,7 @@ export async function commit(token: string, image: Buffer): Promise<void> {
   try {
     const result = await octokit.rest.repos.createOrUpdateFileContents({
       ...context.repo,
-      path: './status_card.png',
+      path: 'status_card.png',
       message: 'Update status card',
       content: image.toString('base64')
     })
