@@ -13,6 +13,9 @@ inputs:
     required: false
     description: 'background image url'
     default: ''
+  token:
+    required: true
+    description: 'GitHub personal access token'
 runs:
   using: 'composite'
   steps:

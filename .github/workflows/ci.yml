@@ -1,6 +1,5 @@
 name: 'ci'
 on: # rebuild any PRs and main branch changes
-  pull_request:
   push:
     branches:
       - main
@@ -39,3 +38,4 @@ jobs:
       - uses: ./
         with:
           host: smp.nftworlds.com
+          token: ${{ secrets.GITHUB_TOKEN }}

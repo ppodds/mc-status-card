@@ -1,6 +1,5 @@
 import {error, setFailed} from '@actions/core'
 import {createCanvas, loadImage} from 'canvas'
-import {writeFileSync} from 'fs'
 import {
   NewPingResult,
   OldPingResult,
@@ -59,7 +58,7 @@ export async function card(
   host: string,
   port: number,
   bgImage: string
-): Promise<void> {
+): Promise<Buffer> {
   const cardInfo = await extractCardInfo({host, port})
   const WIDTH = 600
   const HEIGHT = 100
@@ -89,5 +88,5 @@ export async function card(
     230,
     85
   )
-  writeFileSync('./status_card.png', canvas.toBuffer())
+  return canvas.toBuffer()
 }
