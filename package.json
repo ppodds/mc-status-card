@@ -24,7 +24,7 @@
   "author": "ppodds",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.9.0",
     "@actions/github": "^5.0.3",
     "canvas": "^2.9.3",
     "minecraft-protocol": "^1.35.0"
