@@ -1,4 +1,3 @@
-import {error, setFailed} from '@actions/core'
 import {createCanvas, loadImage} from 'canvas'
 import {
   NewPingResult,
@@ -6,7 +5,6 @@ import {
   ping,
   PingOptions
 } from 'minecraft-protocol'
-import {exit} from 'process'
 
 interface CardInfo {
   players: {
@@ -17,7 +15,7 @@ interface CardInfo {
   version: string
 }
 
-async function extractCardInfo(options: PingOptions): Promise<CardInfo> {
+async function extractCardInfo(options: PingOptions): Promise<CardInfo | null> {
   try {
     const pingResult = await ping(options)
     if ((pingResult as OldPingResult).prefix) {
@@ -51,10 +49,9 @@ async function extractCardInfo(options: PingOptions): Promise<CardInfo> {
         ) ?? ['unknown'])[0]
       }
     }
-  } catch (e: any) {
-    error(e)
-    setFailed(e.message)
-    exit(1)
+  } catch (e) {
+    // server offline or other error
+    return null
   }
 }
 
@@ -80,17 +77,22 @@ export async function card(
   ctx.shadowColor = 'rgb(0,0,0)'
   ctx.strokeText(host, 10, 30)
   ctx.fillText(host, 10, 30)
-  ctx.strokeText(`Version: ${cardInfo.version}`, 10, 85)
-  ctx.fillText(`Version: ${cardInfo.version}`, 10, 85)
-  ctx.strokeText(
-    `Players: ${cardInfo.players.online}/${cardInfo.players.max}`,
-    230,
-    85
-  )
-  ctx.fillText(
-    `Players: ${cardInfo.players.online}/${cardInfo.players.max}`,
-    230,
-    85
-  )
+  if (cardInfo) {
+    ctx.strokeText(`Version: ${cardInfo.version}`, 10, 85)
+    ctx.fillText(`Version: ${cardInfo.version}`, 10, 85)
+    ctx.strokeText(
+      `Players: ${cardInfo.players.online}/${cardInfo.players.max}`,
+      230,
+      85
+    )
+    ctx.fillText(
+      `Players: ${cardInfo.players.online}/${cardInfo.players.max}`,
+      230,
+      85
+    )
+  } else {
+    ctx.strokeText('Offline', 10, 85)
+    ctx.fillText('Offline', 10, 85)
+  }
   return canvas.toBuffer()
 }
